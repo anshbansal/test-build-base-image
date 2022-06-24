@@ -24,13 +24,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Docker meta
-        id: docker_meta
-        uses: crazy-max/ghaction-docker-meta@v1
-        with:
-          # list of Docker images to use as base name for tags
-          images: |
-            anshbansal/datahub-ingestion-base
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -46,5 +39,5 @@ jobs:
           context: ./docker/datahub-ingestion
           file: ./docker/datahub-ingestion/base.Dockerfile
           platforms: ${{ matrix.platform }}
-          tags: latest
+          tags: anshbansal/datahub-ingestion-base:latest
           push: true
